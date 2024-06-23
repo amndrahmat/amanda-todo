@@ -38,7 +38,7 @@ export default function TodoDetails({ todo }) {
   const { dispatch } = useTodosContext();
 
   const handleClick = async () => {
-    const response = await fetch("/api/todos/" + todo._id, {
+    const response = await fetch("https://amanda-todo.onrender.com/api/todos/" + todo._id, {
       method: "DELETE",
     });
     const json = await response.json();
@@ -50,7 +50,7 @@ export default function TodoDetails({ todo }) {
   };
 
   const handleUpdate = async () => {
-    const response = await fetch("/api/todos/" + todo._id, {
+    const response = await fetch("https://amanda-todo.onrender.com/api/todos/" + todo._id, {
       method: "PATCH",
       body: JSON.stringify({
         status: "completed",

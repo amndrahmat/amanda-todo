@@ -9,7 +9,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const response = await fetch("/api/todos");
+      const response = await fetch("https://amanda-todo.onrender.com/api/todos");
       const json = await response.json();
 
       if (response.ok) {

@@ -37,7 +37,7 @@ export default function TodoForm() {
         description: data.get("description"),
         status: status === 0 ? "pending" : "completed",
       };
-      const response = await fetch("/api/todos", {
+      const response = await fetch("https://amanda-todo.onrender.com/api/todos/", {
         method: "POST",
         body: JSON.stringify(todo),
         headers: {
@@ -61,7 +61,7 @@ export default function TodoForm() {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     
-    const response = await fetch("/api/todos?title=" + data.get("search"), {
+    const response = await fetch("https://amanda-todo.onrender.com/api/todos?title=" + data.get("search"), {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
