@@ -9,7 +9,16 @@ const Home = () => {
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const response = await fetch("https://amanda-todo.onrender.com/api/todos");
+      const response = await fetch(
+        "https://amanda-todo.onrender.com/api/todos",
+        {
+          method: "GET",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const json = await response.json();
 
       if (response.ok) {
@@ -23,13 +32,11 @@ const Home = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={4}>
-      <TodoForm />
+        <TodoForm />
       </Grid>
       <Grid item xs={12} md={8}>
-      {todos &&
-          todos.map((todo) => (
-            <TodoDetails todo={todo} key={todo._id} />
-          ))}
+        {todos &&
+          todos.map((todo) => <TodoDetails todo={todo} key={todo._id} />)}
       </Grid>
     </Grid>
   );

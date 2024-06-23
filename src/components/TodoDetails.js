@@ -38,9 +38,16 @@ export default function TodoDetails({ todo }) {
   const { dispatch } = useTodosContext();
 
   const handleClick = async () => {
-    const response = await fetch("https://amanda-todo.onrender.com/api/todos/" + todo._id, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      "https://amanda-todo.onrender.com/api/todos/" + todo._id,
+      {
+        method: "DELETE",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const json = await response.json();
 
     if (response.ok) {
@@ -50,15 +57,19 @@ export default function TodoDetails({ todo }) {
   };
 
   const handleUpdate = async () => {
-    const response = await fetch("https://amanda-todo.onrender.com/api/todos/" + todo._id, {
-      method: "PATCH",
-      body: JSON.stringify({
-        status: "completed",
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "https://amanda-todo.onrender.com/api/todos/" + todo._id,
+      {
+        method: "PATCH",
+        mode: "cors",
+        body: JSON.stringify({
+          status: "completed",
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const json = await response.json();
 
     if (response.ok) {

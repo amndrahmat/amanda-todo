@@ -37,13 +37,17 @@ export default function TodoForm() {
         description: data.get("description"),
         status: status === 0 ? "pending" : "completed",
       };
-      const response = await fetch("https://amanda-todo.onrender.com/api/todos/", {
-        method: "POST",
-        body: JSON.stringify(todo),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://amanda-todo.onrender.com/api/todos/",
+        {
+          method: "POST",
+          body: JSON.stringify(todo),
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const json = await response.json();
 
       if (!response.ok) {
@@ -60,13 +64,17 @@ export default function TodoForm() {
   const handleSearch = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    
-    const response = await fetch("https://amanda-todo.onrender.com/api/todos?title=" + data.get("search"), {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+
+    const response = await fetch(
+      "https://amanda-todo.onrender.com/api/todos?title=" + data.get("search"),
+      {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const json = await response.json();
 
     if (!response.ok) {
